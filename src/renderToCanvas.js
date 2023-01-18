@@ -31,9 +31,13 @@ export default async function renderToCanvas(content, { width, height }) {
       ${renderToStaticMarkup(content)}
       </foreignObject>
       </svg>`;
-  const image = await loadImage(url);
-  console.log('drawing image')
+  const image = await loadImage(url)
+  .then(img => {
+    console.log('image loaded')
+    ctx.drawImage(image, 0, 30);
+    console.log('drawing image')
+  })
+  .catch(err => console.error(err));
 
-  ctx.drawImage(image, 0, 30);
   return canvas;
 }

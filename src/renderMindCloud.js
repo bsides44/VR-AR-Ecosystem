@@ -13,28 +13,26 @@ export default async function renderMindCloud(div) {
     // Get data
     window.fetch('data.json').then(response => {
             response.json().then(dataJson => {
-                console.log('fetched', dataJson)
                 addData(dataJson)
             })
         })
     
     async function addData(dataVar){
         const { scene, renderer, camera } = initializeScene(div, dataVar);
-        console.log('initializeScene')
+
         // Create labels 
-        // dataVar.nodes = await Promise.all(
-        //     dataVar.nodes.map((node) =>
-        //         renderToSprite(<MindMapNode label={node.name} level={node.level} />, {
-        //         width: 120,
-        //         height: 200
-        //         }).then((sprite) => ({ ...node, sprite }))
-        //     )
-        // );
-        console.log('labels created')
+        dataVar.nodes = await Promise.all(
+            dataVar.nodes.map((node) =>
+                renderToSprite(<MindMapNode label={node.name} level={node.level} />, {
+                width: 120,
+                height: 200
+                }).then((sprite) => ({ ...node, sprite }))
+            )
+        );
+        
         // Create graoh from data
         const Graph = new ThreeForceGraph()
         .graphData(dataVar);
-        console.log('graph')
 
         // Draw labels
         Graph.nodeThreeObject(({ sprite }) => sprite );
@@ -42,9 +40,8 @@ export default async function renderMindCloud(div) {
             ({ level }) => new THREE.MeshBasicMaterial({ color: colorsByLevel[level] })
         );
         Graph.linkWidth(1);
-        console.log('labels lines drawn')
         scene.add(Graph);
-        console.log('graph added to scene')
+
         // const N = 300;
         // camera.lookAt(Graph.position);
         // camera.position.z = Math.cbrt(N) * 180;
@@ -53,7 +50,7 @@ export default async function renderMindCloud(div) {
         camera.position.z = -300
         camera.position.x = -220
         camera.position.y = -100
-        console.log('camera set up')
+
         // Add camera controls
         const tbControls = new TrackballControls(camera, renderer.domElement);
 
