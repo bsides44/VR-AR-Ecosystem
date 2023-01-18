@@ -22,14 +22,14 @@ export default async function renderMindCloud(div) {
         const { scene, renderer, camera } = initializeScene(div, dataVar);
         console.log('initializeScene')
         // Create labels 
-        dataVar.nodes = await Promise.all(
-            dataVar.nodes.map((node) =>
-                renderToSprite(<MindMapNode label={node.name} level={node.level} />, {
-                width: 120,
-                height: 200
-                }).then((sprite) => ({ ...node, sprite }))
-            )
-        );
+        // dataVar.nodes = await Promise.all(
+        //     dataVar.nodes.map((node) =>
+        //         renderToSprite(<MindMapNode label={node.name} level={node.level} />, {
+        //         width: 120,
+        //         height: 200
+        //         }).then((sprite) => ({ ...node, sprite }))
+        //     )
+        // );
         console.log('labels created')
         // Create graoh from data
         const Graph = new ThreeForceGraph()
@@ -56,7 +56,6 @@ export default async function renderMindCloud(div) {
         console.log('camera set up')
         // Add camera controls
         const tbControls = new TrackballControls(camera, renderer.domElement);
-        console.log('trackball cotrolls', tbControls)
 
         // Kick-off renderer
         (function animate() { // IIFE
