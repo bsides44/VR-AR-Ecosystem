@@ -32,14 +32,9 @@ export default async function renderToCanvas(content, { width, height }) {
   //     </foreignObject>
   //     </svg>`;
   const url = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-      <style type="text/css">
-        <![CDATA[
-          ${document.getElementById('styles').innerHTML}
-        ]]>
-      </style>
-      <div width="${width}" height="${height}">
+      <foreignObject width="${width}" height="${height}">
       ${renderToStaticMarkup(content)}
-      </div>
+      </foreignObject>
       </svg>`;
   const image = await loadImage(url)
   console.log('image loaded')
