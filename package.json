@@ -1,0 +1,35 @@
+{
+  "name": "vr-ar-ecosystem-nz",
+  "version": "1.0.0",
+  "description": "A systems map of the VR and AR ecosystem of Aotearoa",
+  "keywords": [
+    "mind map",
+    "graphics",
+    "react",
+    "three.js"
+  ],
+  "main": "src/index.js",
+  "dependencies": {
+    "classnames": "2.2.6",
+    "react": "17.0.0",
+    "react-dom": "17.0.0",
+    "react-scripts": "3.4.3",
+    "three": "0.123.0",
+    "three-forcegraph": "1.37.0"
+  },
+  "devDependencies": {
+    "typescript": "3.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
