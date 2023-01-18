@@ -19,7 +19,7 @@ export default async function renderToCanvas(content, { width, height }) {
   console.log('canvase created')
 
   const ctx = canvas.getContext('2d');
-  console.log('canvase context', width, height)
+  console.log('canvase context')
 
   // const url = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
   //     <style type="text/css">
@@ -32,8 +32,13 @@ export default async function renderToCanvas(content, { width, height }) {
   //     </foreignObject>
   //     </svg>`;
   const url = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-      <div width="${width}" height="${height}">
-      </div>
+      <style type="text/css">
+        <![CDATA[
+          ${document.getElementById('styles').innerHTML}
+        ]]>
+      </style>
+      <foreignObject width="${width}" height="${height}">
+      </foreignObject>
       </svg>`;
   const image = await loadImage(url)
   console.log('image loaded')
