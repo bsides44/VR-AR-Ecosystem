@@ -2,6 +2,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 function loadImage(url) {
   const image = new window.Image();
+  console.log('loading image')
+
   return new Promise((resolve) => {
     image.onload = () => resolve(image);
     image.src = url;
@@ -9,10 +11,16 @@ function loadImage(url) {
 }
 
 export default async function renderToCanvas(content, { width, height }) {
+  console.log('Rendering to canvas')
+
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
+  console.log('canvase created')
+
   const ctx = canvas.getContext('2d');
+  console.log('canvase context')
+
   const url = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
       <style type="text/css">
         <![CDATA[
@@ -24,6 +32,8 @@ export default async function renderToCanvas(content, { width, height }) {
       </foreignObject>
       </svg>`;
   const image = await loadImage(url);
+  console.log('drawing image')
+
   ctx.drawImage(image, 0, 30);
   return canvas;
 }

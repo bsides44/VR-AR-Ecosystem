@@ -13,8 +13,8 @@ export default async function renderMindCloud(div) {
     // Get data
     window.fetch('data.json').then(response => {
             response.json().then(dataJson => {
-                addData(dataJson)
                 console.log('fetched', dataJson)
+                addData(dataJson)
             })
         })
     
