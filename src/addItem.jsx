@@ -13,25 +13,26 @@ class AddItem extends React.Component {
         };
     
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.saveFile.bind(this);
+        this.saveFile = this.saveFile.bind(this);
     }
     
     handleChange(event) {
-        this.setState({ event.target.id : event.target.value});
+        this.setState({ [event.target.name] : event.target.value});
     }
 
     saveFile(e){
-        event.preventDefault();
-        console.log('save file', e)
-        const parent, org, person, add = this.state;
-        console.log(parent, org, person, add)
+        e.preventDefault();
+
+        const parent = this.state.parent
+        const org = this.state.org
+        const person = this.state.person
+        const add = this.state.add
+
         // org
         const parentNode = data.nodes.find((node) => node.name == parent)
         if (parentNode) {
-        console.log('parentNode', parentNode)
-
-            const parentLink = data.links.find((link) => link.target == parentNode.id)
-            const orgId = data.nodes.length
+            const parentLink = data.links.find((link) => link.source.id == parentNode.id)
+            const orgId = data.nodes.length + 1
 
             const nodeData = {  "id": orgId,
                             "name": org,
@@ -44,14 +45,12 @@ class AddItem extends React.Component {
                             }
             data.nodes.push(nodeData)
             data.links.push(linkData)
-            console.log('nodeData', nodeData)
-            console.log('linkData', linkData)
 
             // person
             const personId = orgId + 1
             const personNodeData = {  "id": personId,
                             "name": person,
-                            "val": orgId.val = 1 ? 1 : orgId.val - 1,
+                            "val": nodeData.val = 1 ? 1 : nodeData.val - 1,
                             "level": orgId.level + 1}
             const personLinkData = {
                                 "source": orgId.id,
@@ -66,7 +65,7 @@ class AddItem extends React.Component {
             if (add) {
                 const addNodeData = {  "id": personId + 1,
                     "name": parent,
-                    "val": personId.val = 1 ? 1 : personId.val - 1,
+                    "val": personNodeData.val = 1 ? 1 : personNodeData.val - 1,
                     "level": personId.level + 1}
             
                 const addLinkData = {
@@ -84,16 +83,17 @@ class AddItem extends React.Component {
         return(
             <div className="col-lg-4 col-md-4 col-sm-4">
                 <form id="formdata">
-                        <select id="parent" name="parent" placeholder="Parent Item on Graph" required>
-                            <option value="" disabled>Parent Item on Graph</option>
+                <label>Parent Item on Graph</label>
+                        <select id="parent" name="parent" placeholder="Parent Item on Graph" required onChange={this.handleChange}>
+                            <option value="" default>Select one</option>
                             {data.nodes.map((node) => {
-                                return <option value={node.name} key={node.id}>{node.name}</option>
+                                return <option name={node.name} key={node.id}>{node.name}</option>
                             })}
                         </select>
-                    <input id="org" name="org" type="text" placeholder="Organisation" />
-                    <input id="person" name="person" type="text" placeholder="Person" />
-                    <input id="add" name="add" type="text" placeholder="Additional item (optional)" />
-                    <input type="button" id="bt" value="Add" onClick={saveFile} />
+                    <input id="org" name="org" type="text" placeholder="New item" required onChange={this.handleChange}/>
+                    <input id="person" name="person" type="text" placeholder="Sub-item" required onChange={this.handleChange}/>
+                    <input id="add" name="add" type="text" placeholder="Additional item (optional)" onChange={this.handleChange}/>
+                    <input type="button" id="bt" value="save" onClick={this.saveFile} />
                 </form>
             </div>
         )
