@@ -6,7 +6,6 @@ export default function initializeScene(div) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   div.appendChild(renderer.domElement);
-  // document.getElementById('3d-graph').appendChild(renderer.domElement);
 
   // Setup scene
   const scene = new THREE.Scene();

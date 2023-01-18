@@ -33,6 +33,7 @@ export default async function renderMindCloud(div) {
         ({ level }) => new THREE.MeshBasicMaterial({ color: colorsByLevel[level] })
       );
     Graph.linkWidth(1);
+    graph.scale.set(0.005, 0.005, 0.005);
     scene.add(Graph);
 
     // const N = 300;
@@ -40,9 +41,9 @@ export default async function renderMindCloud(div) {
     // camera.position.z = Math.cbrt(N) * 180;
 
     camera.lookAt(Graph.position);
-    camera.position.z = -300
-    camera.position.x = -220
-    camera.position.y = -100
+    // camera.position.z = -300
+    // camera.position.x = -220
+    // camera.position.y = -100
     
     // Add camera controls
     const tbControls = new TrackballControls(camera, renderer.domElement);
