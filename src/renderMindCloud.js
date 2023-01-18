@@ -33,7 +33,7 @@ export default async function renderMindCloud(div) {
         ({ level }) => new THREE.MeshBasicMaterial({ color: colorsByLevel[level] })
       );
     Graph.linkWidth(1);
-    graph.scale.set(0.005, 0.005, 0.005);
+    Graph.scale.set(0.005, 0.005, 0.005);
     scene.add(Graph);
 
     // const N = 300;
