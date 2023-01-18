@@ -1,5 +1,5 @@
 import React from 'react';
-import data from './data';
+// import data from './data';
 
 // function AddItem() {
 class AddItem extends React.Component {
@@ -10,11 +10,21 @@ class AddItem extends React.Component {
             org: '' ,
             person: '' ,
             add: '' ,
+            data: null
         };
     
         this.handleChange = this.handleChange.bind(this);
         this.saveFile = this.saveFile.bind(this);
     }
+
+    componentDidMount() {
+        fetch('data.json').then(response => {
+            response.json().then(dataJson => {
+                this.setState({data: dataJson});
+            })
+        })            
+    }
+
     
     handleChange(event) {
         this.setState({ [event.target.name] : event.target.value});
@@ -27,12 +37,13 @@ class AddItem extends React.Component {
         const org = this.state.org
         const person = this.state.person
         const add = this.state.add
+        const data = this.state.data
 
         // org
-        const parentNode = data.nodes.find((node) => node.name == parent)
+        const parentNode = data.nodes.find((node) => node.name === parent)
 
         if (parentNode) {
-            const parentLink = data.links.find((link) => link.source.id == parentNode.id)
+            const parentLink = data.links.find((link) => link.source.id === parentNode.id)
             const orgId = data.nodes.length + 1
 
             const nodeData = {  "id": orgId,
@@ -90,9 +101,9 @@ class AddItem extends React.Component {
                 <label>Parent Item on Graph</label>
                         <select id="parent" name="parent" placeholder="Parent Item on Graph" required onChange={this.handleChange}>
                             <option value="" default>Select one</option>
-                            {data.nodes.map((node) => {
+                            {this.state.data ? this.state.data.nodes.map((node) => {
                                 return <option name={node.name} key={node.id}>{node.name}</option>
-                            })}
+                            }) : null}
                         </select>
                     <input id="org" name="org" type="text" placeholder="New item" required onChange={this.handleChange}/>
                     <input id="person" name="person" type="text" placeholder="Sub-item" required onChange={this.handleChange}/>
