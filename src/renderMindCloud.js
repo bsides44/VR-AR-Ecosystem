@@ -8,7 +8,6 @@ import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls
 import * as THREE from 'three';
 import colorsByLevel from './colorsByLevel';
 
-
 export default async function renderMindCloud(div) {
     // adapted from @pahund https://dev.to/pahund/drawing-a-mind-map-with-three-js-and-react-force-directed-graphs-nuffshell-coding-diary-part-iv-1b74
 
