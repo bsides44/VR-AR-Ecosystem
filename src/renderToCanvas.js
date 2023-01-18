@@ -21,23 +21,29 @@ export default async function renderToCanvas(content, { width, height }) {
   const ctx = canvas.getContext('2d');
   console.log('canvase context')
 
+  // const url = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+  //     <style type="text/css">
+  //       <![CDATA[
+  //         ${document.getElementById('styles').innerHTML}
+  //       ]]>
+  //     </style>
+  //     <foreignObject width="${width}" height="${height}">
+  //     ${renderToStaticMarkup(content)}
+  //     </foreignObject>
+  //     </svg>`;
   const url = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-      <style type="text/css">
-        <![CDATA[
-          ${document.getElementById('styles').innerHTML}
-        ]]>
-      </style>
-      <foreignObject width="${width}" height="${height}">
-      ${renderToStaticMarkup(content)}
-      </foreignObject>
-      </svg>`;
+  <style type="text/css">
+    <![CDATA[
+      ${document.getElementById('styles').innerHTML}
+    ]]>
+  </style>
+  <foreignObject width="${width}" height="${height}">
+  </foreignObject>
+  </svg>`;
   const image = await loadImage(url)
-  .then(img => {
-    console.log('image loaded')
-    ctx.drawImage(image, 0, 30);
-    console.log('drawing image')
-  })
-  .catch(err => console.error(err));
+  console.log('image loaded')
+  ctx.drawImage(image, 0, 30);
+  console.log('drawing image')
 
   return canvas;
 }
