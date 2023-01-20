@@ -4,6 +4,7 @@ export default function initializeScene(div) {
 
   // Setup renderer
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize(window.innerWidth, window.innerHeight);
   div.appendChild(renderer.domElement);
 
