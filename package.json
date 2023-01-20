@@ -9,6 +9,9 @@
     "three.js"
   ],
   "main": "src/index.js",
+  "engines": {
+    "node": "16.0.0"
+  },
   "dependencies": {
     "classnames": "2.2.6",
     "react": "17.0.0",
