@@ -35,8 +35,11 @@ class AddItem extends React.Component {
 
         const parent = this.state.parent
         const org = this.state.org
+        const orgUrl = this.state.orgUrl
         const person = this.state.person
+        const personUrl = this.state.personUrl
         const add = this.state.add
+        const addUrl = this.state.addUrl
         const data = this.state.data
 
         // org
@@ -49,7 +52,9 @@ class AddItem extends React.Component {
             const nodeData = {  "id": orgId,
                             "name": org,
                             "val": parentNode.val <= 1 ? 1 : parentNode.val - 1,
-                            "level": parentNode.level + 1}
+                            "level": parentNode.level + 1,
+                            "url": orgUrl
+                        }
             const linkData = {
                             "source": Number(parentNode.id),
                             "target": orgId,
@@ -63,7 +68,9 @@ class AddItem extends React.Component {
             const personNodeData = {  "id": personId,
                             "name": person,
                             "val": nodeData.val <= 1 ? 1 : nodeData.val - 1,
-                            "level": nodeData.level + 1}
+                            "level": nodeData.level + 1,
+                            "url": personUrl
+                        }
             const personLinkData = {
                             "source": nodeData.id,
                             "target": personId,
@@ -77,7 +84,8 @@ class AddItem extends React.Component {
                 const addNodeData = {  "id": personId + 1,
                     "name": add,
                     "val": personNodeData.val = 1 ? 1 : personNodeData.val - 1,
-                    "level": personNodeData.level + 1
+                    "level": personNodeData.level + 1,
+                    "url": addUrl
                 }
             
                 const addLinkData = {
@@ -106,8 +114,12 @@ class AddItem extends React.Component {
                             }) : null}
                         </select>
                     <input id="org" name="org" type="text" placeholder="New item" required onChange={this.handleChange}/>
-                    <input id="person" name="person" type="text" placeholder="Sub-item" required onChange={this.handleChange}/>
-                    <input id="add" name="add" type="text" placeholder="Additional item (optional)" onChange={this.handleChange}/>
+                    <input id="orgUrl" name="orgUrl" type="text" placeholder="New item URL" onChange={this.handleChange}/>
+                    <input id="person" name="person" type="text" placeholder="Sub-item" onChange={this.handleChange}/>
+                    <input id="personUrl" name="personUrl" type="text" placeholder="Sub-item URL"  onChange={this.handleChange}/>
+                    <input id="add" name="add" type="text" placeholder="Additional item" onChange={this.handleChange}/>
+                    <input id="addUrl" name="addUrl" type="text" placeholder="Additional item URL" onChange={this.handleChange}/>
+
                     <input type="button" id="bt" value="save" onClick={this.saveFile} />
                 </form>
             </div>

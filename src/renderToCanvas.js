@@ -28,14 +28,14 @@ export default async function renderToCanvas(content, { width, height }) {
           }
 
           body {
-            font-family: sans-serif;
+            font-family: "roboto", "calibri", sans-serif;
             margin: 0;
             padding: 0;
           }
 
           foreignObject {
             box-sizing: border-box;
-            font-family: sans-serif;
+            font-family: "roboto", "calibri", sans-serif;
           }
 
           .mind-map-node {
@@ -49,7 +49,6 @@ export default async function renderToCanvas(content, { width, height }) {
             border-style: solid;
             border-radius: 12px;
             text-align: center;
-            font-weight: bold;
           }
 
           .magenta {

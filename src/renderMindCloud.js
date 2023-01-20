@@ -8,8 +8,7 @@ import * as THREE from 'three';
 import colorsByLevel from './colorsByLevel';
 
 export default async function renderMindCloud(div) {
-    // adapted from @pahund https://dev.to/pahund/drawing-a-mind-map-with-three-js-and-react-force-directed-graphs-nuffshell-coding-diary-part-iv-1b74
-
+    
     let selectedObject = null;
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
@@ -32,6 +31,7 @@ export default async function renderMindCloud(div) {
         scene.add( group );
 
         // Create labels 
+        // adapted from @pahund https://dev.to/pahund/drawing-a-mind-map-with-three-js-and-react-force-directed-graphs-nuffshell-coding-diary-part-iv-1b74
         dataVar.nodes = await Promise.all(
             dataVar.nodes.map((node) =>
                 renderToSprite(<MindMapNode label={node.name} level={node.level} />, {
@@ -53,7 +53,34 @@ export default async function renderMindCloud(div) {
         Graph.linkMaterial(
             ({ level }) => new THREE.MeshBasicMaterial({ color: colorsByLevel[level] })
         );
-        Graph.linkWidth(1);
+        Graph.linkWidth(0.9);
+        Graph.linkResolution(10)
+        Graph.linkPositionUpdate((line, { start, end }, linkData) => {
+            // detemine if link target node has another link coming off it
+           const linkIsNotLast = dataVar.links.find((link) => {
+                return link.source.id === linkData.target.id
+            })
+
+            // if link is last node in chain, make link slightly shorter
+            if (!linkIsNotLast) {
+                const vStart = new THREE.Vector3(start.x, start.y, start.z);
+                const vEnd = new THREE.Vector3(end.x, end.y, end.z + 2);
+                const distance = vStart.distanceTo(vEnd);
+              
+                line.position.x = vStart.x;
+                line.position.y = vStart.y;
+                line.position.z = vStart.z;
+              
+                line.scale.z = distance;
+              
+                line.parent.localToWorld(vEnd); // lookAt requires world coords
+                line.lookAt(vEnd);
+              
+                return true;
+            }
+            else return false;
+          })
+
         scene.add(Graph);
 
         // const N = 300;
