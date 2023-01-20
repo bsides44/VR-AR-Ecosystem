@@ -10,7 +10,6 @@ import colorsByLevel from './colorsByLevel';
 export default async function renderMindCloud(div) {
     // adapted from @pahund https://dev.to/pahund/drawing-a-mind-map-with-three-js-and-react-force-directed-graphs-nuffshell-coding-diary-part-iv-1b74
 
-    // set up raycasting to make labels clickable
     let selectedObject = null;
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
@@ -81,6 +80,7 @@ export default async function renderMindCloud(div) {
         
         window.addEventListener( 'resize', onWindowResize );
         document.addEventListener( 'pointermove', onPointerMove );
+        document.addEventListener( 'click', onClick );
         
     }
 
@@ -97,11 +97,13 @@ export default async function renderMindCloud(div) {
             selectedObject.material.color.set( returnColor );
             selectedObject = null;
         }
-        // get mouse location
+
         pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
         pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
+        // set up raycaster 
         raycaster.setFromCamera( pointer, camera );
+
         // add sprites to group object so we know where they are in scene
         groupArr.map((item => {
             return group.add(item)
@@ -120,10 +122,16 @@ export default async function renderMindCloud(div) {
                 selectedObject = res.object;
                 returnColor = selectedObject.material.color.getHex()
                 selectedObject.material.color.set( '#f103c8' );
-
             }
 
         }
 
+    }
+
+    function onClick( event ) {
+        // go to url prop on click
+        if (selectedObject && selectedObject.__data.url) {
+            window.open(selectedObject.__data.url, '_blank','noopener');
+        }
     }
 }
