@@ -108,6 +108,8 @@ export default async function renderMindCloud(div) {
         window.addEventListener( 'resize', onWindowResize );
         document.addEventListener( 'pointermove', onPointerMove );
         document.addEventListener( 'click', onClick );
+        document.addEventListener( 'touchstart', onClick );
+
         
     }
 
@@ -158,7 +160,11 @@ export default async function renderMindCloud(div) {
     function onClick( event ) {
         // go to url prop on click
         if (selectedObject && selectedObject.__data.url) {
-            window.open(selectedObject.__data.url, '_blank','noopener');
+            window.innerWidth >= 600 ?
+                // open new tab on desktop
+                window.open(selectedObject.__data.url, '_blank', 'noopener') :
+                // new window works better on mobile
+                window.location = (selectedObject.__data.url)
         }
     }
 }
