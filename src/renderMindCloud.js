@@ -20,7 +20,7 @@ export default async function renderMindCloud(div) {
     const { scene, renderer, camera } = initializeScene(div);
 
     // Get data
-    window.fetch('data.json').then(response => {
+    window.fetch('https://nextjsdemo-eight-bay.vercel.app/api/v1/vrmap').then(response => {
             response.json().then(dataJson => {
                 addData(dataJson)
             })
@@ -34,7 +34,7 @@ export default async function renderMindCloud(div) {
         // adapted from @pahund https://dev.to/pahund/drawing-a-mind-map-with-three-js-and-react-force-directed-graphs-nuffshell-coding-diary-part-iv-1b74
         dataVar.nodes = await Promise.all(
             dataVar.nodes.map((node) =>
-                renderToSprite(<MindMapNode label={node.name} level={node.level} />, {
+                renderToSprite(<MindMapNode label={node.name} level={node.level} val={node.val} />, {
                 width: 120,
                 height: 200
                 }).then((sprite) => {

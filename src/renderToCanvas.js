@@ -74,6 +74,17 @@ export default async function renderToCanvas(content, { width, height }) {
             border-color: rgb(3, 211, 207);
             background-color: rgb(190, 254, 253);
           }
+
+          .large {
+            font-size: 1.5em;
+            font-weight: bold
+          }
+          .medium {
+            font-size: 1.2em
+          }
+          .regular {
+            font-size: 1em
+          }
         </style>
         <foreignObject width="${width}" height="${height}">
           ${renderToStaticMarkup(content)}
