@@ -35,8 +35,8 @@ export default async function renderMindCloud(div) {
         dataVar.nodes = await Promise.all(
             dataVar.nodes.map((node) =>
                 renderToSprite(<MindMapNode label={node.name} level={node.level} val={node.val} />, {
-                width: 120,
-                height: 200
+                width: 150,
+                height: 250
                 }).then((sprite) => {
                     groupArr.push(sprite);
                     return ({ ...node, sprite })

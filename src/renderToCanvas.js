@@ -40,7 +40,7 @@ export default async function renderToCanvas(content, { width, height }) {
 
           .mind-map-node {
             padding: 10px;
-            width: 120px;
+            width: 150px;
             height: auto;
             display: flex;
             justify-content: center;
