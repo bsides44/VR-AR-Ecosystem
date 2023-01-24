@@ -38,13 +38,19 @@ export default async function renderMindCloud(div) {
                 width: 150,
                 height: 250
                 }).then((sprite) => {
+                    // change position of label based on length, so it is still close to link
+                    if (node.name.length < 15) sprite.center.y = 0.65
+                    if (node.name.length > 16 && node.name.length < 40 ) sprite.center.y = 0.6
+                    if (node.name.length > 41 && node.name.length < 60 ) sprite.center.y = 0.45
+                    if (node.name.length > 61) sprite.center.y = 0.2
+
                     groupArr.push(sprite);
                     return ({ ...node, sprite })
                 })
             )
         );
         
-        // Create graoh from data
+        // Create graph from data
         const Graph = new ThreeForceGraph()
         .graphData(dataVar);
 
@@ -55,13 +61,12 @@ export default async function renderMindCloud(div) {
         );
         Graph.linkWidth(0.9);
         Graph.linkResolution(10)
+        // reduce length of last link so it doesn't intersect label
         Graph.linkPositionUpdate((line, { start, end }, linkData) => {
-            // detemine if link target node has another link coming off it
            const linkIsNotLast = dataVar.links.find((link) => {
                 return link.source.id === linkData.target.id
             })
 
-            // if link is last node in chain, make link slightly shorter
             if (!linkIsNotLast) {
                 const vStart = new THREE.Vector3(start.x, start.y, start.z);
                 const vEnd = new THREE.Vector3(end.x, end.y, end.z + 2);
@@ -73,7 +78,7 @@ export default async function renderMindCloud(div) {
               
                 line.scale.z = distance;
               
-                line.parent.localToWorld(vEnd); // lookAt requires world coords
+                line.parent.localToWorld(vEnd);
                 line.lookAt(vEnd);
               
                 return true;
