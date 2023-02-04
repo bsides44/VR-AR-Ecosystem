@@ -8,14 +8,18 @@
     />
     <meta name="theme-color" content="#000000" />
     <title>Augmented and Virtual Reality in NZ</title>
-    <style id="styles" type="text/css">
+    <style>
       html {
         box-sizing: border-box;
       }
-      html, body, #root, .App {
-        /* todo fix this */
-        height:100%;
-        width:100%
+
+      .appContainer {
+          background: linear-gradient(75deg, #49a09d, #5f2c82);
+          height: 100%;
+          position: absolute;
+          left: 0;
+          width: 100%;
+          overflow: auto;
       }
 
       *,
@@ -106,12 +110,6 @@
         padding-top: 0px !important;
         border: none;
       }
-      .appContainer{
-        background: linear-gradient(75deg, #49a09d, #5f2c82);
-        width: 100vw;
-        /* todo fix this */
-        height: 500vh;
-      }
 
       .directory{
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -157,17 +155,6 @@
         .directory{
           left: 0px;
           font-size: 1.25em;
-        }
-        .appContainer{
-          width: 100%;
-          /* todo fix this */
-          height: 800%;
-        }
-      }
-      @media only screen and (max-width: 600px) {
-        .appContainer{
-          /* todo fix this */
-          height: 550%;
         }
       }
     </style>
