@@ -49,7 +49,7 @@ export default async function renderMindCloud(div) {
                 })
             )
         );
-        
+
         // Create graph from data
         const Graph = new ThreeForceGraph()
         .graphData(dataVar);
@@ -88,10 +88,6 @@ export default async function renderMindCloud(div) {
 
         scene.add(Graph);
 
-        // const N = 300;
-        // camera.lookAt(Graph.position);
-        // camera.position.z = Math.cbrt(N) * 180;
-
         camera.lookAt(Graph.position);
         camera.position.z = -300
         camera.position.x = -220
@@ -112,10 +108,8 @@ export default async function renderMindCloud(div) {
         
         window.addEventListener( 'resize', onWindowResize );
         document.addEventListener( 'pointermove', onPointerMove );
-        document.addEventListener( 'click', onClick );
-        document.addEventListener( 'touchstart', onClick );
-
-        
+        // document.addEventListener( 'click', onClick );
+        // document.addEventListener( 'touchstart', onClick );
     }
 
     function onWindowResize() {
@@ -162,14 +156,14 @@ export default async function renderMindCloud(div) {
 
     }
 
-    function onClick( event ) {
-        // go to url prop on click
-        if (selectedObject && selectedObject.__data.url) {
-            window.innerWidth >= 600 ?
-                // open new tab on desktop
-                window.open(selectedObject.__data.url, '_blank', 'noopener') :
-                // new window works better on mobile
-                window.location = (selectedObject.__data.url)
-        }
-    }
+    // async function onClick( event ) {
+    //     // go to url prop on click
+    //     if (selectedObject && selectedObject.__data.url) {
+    //         window.innerWidth >= 600 ?
+    //             // open new tab on desktop
+    //             window.open(selectedObject.__data.url, '_blank', 'noopener') :
+    //             // new window works better on mobile
+    //             window.location = (selectedObject.__data.url)
+    //     }
+    // }
 }
