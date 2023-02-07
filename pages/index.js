@@ -2,6 +2,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import styles from '@/styles/Home.module.css'
 import { useRouter } from 'next/router'
+import PrintText from '@/components/PrintText'
 
 function Home(props) {
   const router = useRouter()
@@ -16,8 +17,8 @@ function Home(props) {
   return (
     <>
       <Head>
-        <title>NZ XR Ecosystem</title>
-        <meta name="NZ XR Ecosysten" content="Augmented Reality (AR) and Virtual Reality (VR) developers New Zealand" />
+        <title>VR AR Ecosystem of New Zealand</title>
+        <meta name="VR AR Ecosystem of NZ" content="Augmented Reality (AR) and Virtual Reality (VR) developers New Zealand" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit = no" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preload" href="/api/v2/vrmap" as="fetch" crossOrigin="anonymous" />
@@ -27,6 +28,7 @@ function Home(props) {
         <a href="/additem" target="_blank" rel="noopener noreferrer" className={styles.addButton} >
        Add item</a>
           <Graph></Graph>
+          <PrintText></PrintText>
         </main>
 
     </>
