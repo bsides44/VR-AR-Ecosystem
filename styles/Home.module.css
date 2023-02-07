@@ -99,8 +99,8 @@
   .directory{
     color: black;
     position: absolute;
-    top: -9999px;
-    left: -9999px;
+    height: 1px;
+    overflow: hidden;
     z-index: 1
   }
 
