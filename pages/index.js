@@ -18,7 +18,7 @@ function Home(props) {
     <>
       <Head>
         <title>VR AR Ecosystem of New Zealand</title>
-        <meta name="VR AR Ecosystem of NZ" content="Augmented Reality (AR) and Virtual Reality (VR) developers New Zealand" />
+        <meta name="description" content="A 3D directory map of Augmented Reality (AR) and Virtual Reality (VR) developers, workers, thinkers, makers and practitioners in New Zealand" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit = no" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preload" href="/api/v2/vrmap" as="fetch" crossOrigin="anonymous" />
