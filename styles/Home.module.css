@@ -97,6 +97,10 @@
 
   /* PrintText */
   .directory{
-    color: black
+    color: black;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    z-index: 1
   }
 
