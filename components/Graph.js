@@ -28,6 +28,19 @@ export default function Graph(props) {
 
   const colours = ['#f103c8', '#8603f1', '#0064d2', '#0ba075', '#0591d0', '#cb9310'];
   const textHeights = [14, 12, 10, 9, 9, 9];
+  const breakString = (str, limit) => {
+    let brokenString = '';
+    for(let i = 0, count = 0; i < str.length; i++){
+        if(count >= limit && str[i] === ' '){
+          count = 0;
+          brokenString += '\n';
+        }else{
+          count++;
+          brokenString += str[i];
+        }
+    }
+    return brokenString;
+  }
 
   return (
     // see https://www.npmjs.com/package/3d-force-graph for options
@@ -44,8 +57,8 @@ export default function Graph(props) {
       height={height}
       ref={forceRef}
       nodeThreeObject={(node) => {
-        const sprite = new SpriteText(node.name)
-        sprite.material.depthWrite = false; // make sprite background transparent
+        const sprite = new SpriteText(breakString(node.name, 10))
+        sprite.material.depthWrite = true; // make sprite background opaque
         sprite.color = colours[node.level]
         sprite.textHeight = textHeights[node.level]
         return sprite
