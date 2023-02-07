@@ -1,2 +1,8 @@
-# VR-AR-Ecosystem
-A mindmap-style systems view of the Augmented and Virtual Reality ecosystem in New Zealand
+This is a map of the AR VR Ecosystem of New Zealand.
+
+Built on three.js using 3D-forcegraph for React
+https://www.npmjs.com/package/3d-force-graph
+
+npm i
+npm run build
+npm start

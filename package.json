@@ -1,40 +1,30 @@
 {
-  "name": "vr-ar-ecosystem-nz",
-  "version": "1.0.0",
-  "description": "A systems map of the VR and AR ecosystem of Aotearoa",
-  "keywords": [
-    "mind map",
-    "graphics",
-    "react",
-    "three.js"
-  ],
-  "main": "src/index.js",
-  "engines": {
-    "node": "16.0.0"
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
-    "classnames": "2.2.6",
+    "@next/font": "13.1.2",
+    "@react-hook/window-size": "^3.1.1",
+    "classnames": "^2.3.2",
+    "eslint": "8.31.0",
+    "eslint-config-next": "13.1.2",
     "google-spreadsheet": "^3.3.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "three": "0.123.0",
-    "three-forcegraph": "1.37.0",
-    "vercel": "^28.13.0"
+    "next": "^13.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-force-graph-3d": "^1.21.19",
+    "swr": "^2.0.3",
+    "three-spritetext": "^1.6.5"
   },
   "devDependencies": {
-    "typescript": "3.8.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "prettier": "^2.8.3"
+  }
 }
