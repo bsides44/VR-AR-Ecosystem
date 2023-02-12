@@ -1,4 +1,4 @@
- /* addItem   */
+  /* addItem   */
   .addButton{
     position: absolute;
     top: 10px;
@@ -102,5 +102,25 @@
     height: 1px;
     overflow: hidden;
     z-index: 1
+  }
+
+    /* github button */
+  #gitButton {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    z-index: 1;
+    width: 65px;
+    border: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1.25px;
+    transition: all 200ms linear;
+  }
+  #gitButton:hover {
+    width:70px;
+    transition: all 200ms linear;
   }
 

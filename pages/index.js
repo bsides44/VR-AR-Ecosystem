@@ -28,6 +28,7 @@ function Home(props) {
         <main className={styles.main}>
         <a href="/additem" target="_blank" rel="noopener noreferrer" className={styles.addButton} >
        Add item</a>
+       <a href='https://github.com/bsides44/VR-AR-Ecosystem' target='_blank' rel='noopener noreferrer'><img id={styles.gitButton} src="./github.png" /></a>
           <PrintText></PrintText>
           <Graph></Graph>
         </main>
