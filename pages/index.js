@@ -22,7 +22,16 @@ function Home(props) {
         <meta name="keywords" content="virtual reality, vr, augmented reality, ar, webvr, webxr, webar, mixed reality, xr, headset, quest, hmd, vive, metaverse, oculus, niantic, unity, unreal, 360, immersive" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit = no" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon-16.png" sizes="16x16" />
+        <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+        <link rel="icon" href="/android-chrome-192.png" sizes="192x192" />
+        <link rel="icon" href="/android-chrome-512.png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="preload" href="/api/v2/vrmap" as="fetch" crossOrigin="anonymous" />
+        <meta property="og:image" content="/vr-ar-xr-new-zealand.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024"/>
       </Head>
 
         <main className={styles.main}>
